@@ -16,6 +16,9 @@
       </div>
       <div id="footer">
         <span>: made with &#10084; by hayden isler :</span>
+        <router-link tag="div" to="/mystery" id="mystery">
+          <icon-base width="40px" height="40px" viewBox="0 -15 200 200"><icon-mystery /></icon-base>
+        </router-link>
       </div>
     </div>
   </div>
@@ -23,11 +26,15 @@
 
 <script>
 import Hideout from '@/components/Hideout.vue';
+import IconBase from '@/components/IconBase.vue';
+import IconMystery from '@/components/icons/IconMystery.vue';
 
 export default {
   data: () => {},
   components: {
-    Hideout
+    Hideout,
+    IconBase,
+    IconMystery
   }
 }
 </script>
@@ -66,8 +73,8 @@ body {
 
   /* grid */
   display: grid;
-  grid-template-columns: 100px 1fr;
-  grid-template-rows: 100px 1fr 60px;
+  grid-template-columns: 100px auto;
+  grid-template-rows: 100px auto 60px;
   color: $text-color-main;
 }
 
@@ -109,6 +116,7 @@ body {
       border: solid $text-color-accent-1 1px;
       border-radius: 4px;
       cursor: pointer;
+      font-weight: 600;
       transition: all 0.1s ease-in;
     }
 
@@ -148,6 +156,13 @@ body {
   font-size: 0.8em;
   color: rgba(255, 255, 255, 0.4);
 
+  #mystery {
+    cursor: pointer;
+  }
+
+  .router-link-active {
+    color: white;
+  }
 }
 
 em {
