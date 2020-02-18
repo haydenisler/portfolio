@@ -64,7 +64,7 @@ body {
   height: 100%;
   width: 100%;
   position: absolute;
-  z-index: -1;
+  z-index: -2;
 }
 
 #main {
@@ -86,9 +86,7 @@ body {
   justify-content: space-between;
   align-items: center;
   margin: 0 $main-content-padding;
-  border-bottom: solid 1px;
-  border-color: rgba(255, 255, 255, 0.3);
-
+  
   #logo {
     font-weight: 800;
     font-size: 2.0em;
