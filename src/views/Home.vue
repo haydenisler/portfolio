@@ -1,11 +1,8 @@
 <template>
   <div id="home">
     <div id="headlines">
-      <div>
-        <div class="headline"><span>Hello, I'm Hayden Isler.</span></div>
-        <div class="headline"><span>I build <strong>smart</strong>, <strong>data driven</strong> applications.</span></div>
-        <div class="sub-headline"><span>: Full Stack Developer from <em>Austin, TX</em> :</span></div>
-      </div>
+      <div class="headline"><span>I'm Hayden Isler. I build <strong>smart</strong>, <strong>data driven</strong> applications.</span></div>
+      <div class="sub-headline"><span>: Full Stack Developer from <em>Austin, TX</em> :</span></div>
     </div>
     <div id="action"></div>
     <div id="work"></div>
