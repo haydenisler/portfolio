@@ -3,7 +3,7 @@
     <div id="home-bg"><span>HELLO.</span></div>
     <div id="headlines">
       <div class="headline"><span>I'm Hayden Isler. I build <strong>smart</strong>, <strong>data driven</strong> applications.</span></div>
-      <div class="sub-headline"><span>: Full Stack Developer from <em>Austin, TX</em> :</span></div>
+      <div class="sub-headline"><span>: Full Stack Developer @ <em>Austin, TX</em> :</span></div>
     </div>
     <div id="work">
     </div>

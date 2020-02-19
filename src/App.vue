@@ -56,50 +56,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-// mobile layout
-@media screen and (max-width: 800px) {
-  #badges {
-    visibility: hidden;
-  }
-}
-
-// desktop layout
-@media screen and (min-width: 800px) {
-  #main {
-    display: grid;
-    grid-template-columns: 100px $content-gutters auto $content-gutters;
-    grid-template-rows: 100px auto 60px; 
-  }
-
-  #header {
-    grid-area: 1 / 3 / 2 / 4;
-  }
-
-  #badges {
-    grid-area: 1 / 1 / 4 / 2;
-  }
-
-  #content {
-    grid-area: 2 / 3 / 3 / 4;
-  }
-
-  #footer {
-    grid-area: 3 / 2 / 4 / 5;
-
-    #footer-content {
-      grid-area: 3 / 3 / 4 / 4;
-    }
-  }
-}
-
-
-
-
-
-
-
-
-
 #app {
   height: 100%;
 }
@@ -118,7 +74,6 @@ body {
 }
 
 #header {
-  /* grid area | header */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -127,75 +82,20 @@ body {
   #logo {
     font-weight: 800;
     font-size: 2.0em;
-    cursor: pointer;
-    transition: scale 0.1s ease-in;
-  }
-
-  #logo:hover {
-    scale: 1.15;
   }
 
   #nav {
-    width: 425px;
     display: flex;
     justify-content: space-between;
-    color: $text-color-accent-1;
     font-family: 'Raleway', sans-serif;
     font-size: 1em;
-
-    .nav-button {
-      color: $text-color-accent-1;
-      font-weight: 400;
-      font-size: 1em;
-      padding: 10px 25px;
-      border: solid $text-color-accent-1 1px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: all 0.1s ease-in;
-    }
-
-    .nav-button:hover {
-      background-color: $text-color-accent-1;
-      color: white;
-    }
-
-    .router-link-active {
-      background-color: $text-color-accent-1;
-      color: white;
-    }
   }
-}
-
-#badges {
-  background-color: $elevation-color-2;
 }
 
 #content {
   /* grid area | content */
   height: 100%;
   width: 100%;
-}
-
-#footer {
-  /* grid area | footer */
-  background-color: $elevation-color-1;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  font-family: 'Raleway', sans-serif;
-  font-size: 0.8em;
-  color: rgba(255, 255, 255, 0.4);
-  padding: 0 $content-gutters;
-
-  #mystery {
-    cursor: pointer;
-  }
-
-  .router-link-active {
-    color: white;
-  }
 }
 
 em {
@@ -222,6 +122,127 @@ strong {
       100% {
         text-shadow: rgba(233, 30, 98, 0) 0 0 20px;
       }
+    }
+  }
+}
+
+/*
+ ** MOBILE STYLING
+ */
+@media screen and (max-width: 800px) {
+  #main {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+
+  #header {
+    background-color: $text-color-accent-1;
+  }
+  
+  #badges {
+    display: none;
+  }
+
+  #footer {
+    display: none;
+  }
+}
+
+/*
+ ** DESKTOP STYLING
+ */
+@media screen and (min-width: 801px) {
+
+  #main {
+    display: grid;
+    grid-template-columns:
+      [ badges-begin                  ] 100px
+      [ badges-end     gutter-1-end   ] $content-gutters
+      [ gutter-2-end   content-begin  ] auto
+      [ content-end    gutter-2-begin ] $content-gutters
+      [ gutter-2-end                  ]
+    ;
+    grid-template-rows:
+      [ header-begin                  ] 100px
+      [ header-end      content-begin ] auto
+      [ content-end     footer-begin  ] 60px
+      [ footer-end                    ]
+    ;
+    grid-template-areas:
+      'badges gutters-1 header gutters-2'
+      'badges gutters-1 content gutters-2'
+      'badges footer footer footer'
+    ;
+  }
+
+  #header {
+    grid-area: header;
+
+    #logo {
+      cursor: pointer;
+      transition: scale 0.1s ease-in;
+    }
+
+    #logo:hover {
+      scale: 1.15;
+    }
+
+    #nav {
+      width: 425px;
+      color: $text-color-accent-1;
+
+      .nav-button {
+        color: $text-color-accent-1;
+        font-weight: 400;
+        font-size: 1em;
+        padding: 10px 25px;
+        border: solid $text-color-accent-1 1px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.1s ease-in;
+      }
+
+      .nav-button:hover {
+        background-color: $text-color-accent-1;
+        color: white;
+      }
+
+      .router-link-active {
+        background-color: $text-color-accent-1;
+        color: white;
+      }
+    }
+  }
+
+  #badges {
+    grid-area: badges;
+    background-color: $elevation-color-2;
+  }
+
+  #content {
+    grid-area: content;
+  }
+
+  #footer {
+    grid-area: footer;
+    background-color: $elevation-color-1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.8em;
+    color: rgba(255, 255, 255, 0.4);
+    padding: 0 $content-gutters;
+
+    #mystery {
+      cursor: pointer;
+    }
+
+    .router-link-active {
+      color: white;
     }
   }
 }
