@@ -40,7 +40,7 @@ export default {
 </script>
 
 <style lang="scss">
-$main-content-padding: 50px;
+$content-gutters: 80px;
 
 html {
   height: 100%
@@ -56,6 +56,50 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+// mobile layout
+@media screen and (max-width: 800px) {
+  #badges {
+    visibility: hidden;
+  }
+}
+
+// desktop layout
+@media screen and (min-width: 800px) {
+  #main {
+    display: grid;
+    grid-template-columns: 100px $content-gutters auto $content-gutters;
+    grid-template-rows: 100px auto 60px; 
+  }
+
+  #header {
+    grid-area: 1 / 3 / 2 / 4;
+  }
+
+  #badges {
+    grid-area: 1 / 1 / 4 / 2;
+  }
+
+  #content {
+    grid-area: 2 / 3 / 3 / 4;
+  }
+
+  #footer {
+    grid-area: 3 / 2 / 4 / 5;
+
+    #footer-content {
+      grid-area: 3 / 3 / 4 / 4;
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
 #app {
   height: 100%;
 }
@@ -70,22 +114,15 @@ body {
 #main {
   height: 100%;
   width: 100%;
-
-  /* grid */
-  display: grid;
-  grid-template-columns: 100px auto;
-  grid-template-rows: 100px auto 60px;
   color: $text-color-main;
 }
 
 #header {
   /* grid area | header */
-  grid-area: 1 / 2 / 2 / 3;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin: 0 $main-content-padding;
   
   #logo {
     font-weight: 800;
@@ -131,30 +168,26 @@ body {
 }
 
 #badges {
-  /* grid area | badges */
-  grid-area: 1 / 1 / 4 / 2;
   background-color: $elevation-color-2;
 }
 
 #content {
   /* grid area | content */
-  grid-area: 2 / 2 / 3 / 3;
   height: 100%;
   width: 100%;
 }
 
 #footer {
   /* grid area | footer */
-  grid-area: 3 / 2 / 4 / 3;
   background-color: $elevation-color-1;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 0 $main-content-padding;
   font-family: 'Raleway', sans-serif;
   font-size: 0.8em;
   color: rgba(255, 255, 255, 0.4);
+  padding: 0 $content-gutters;
 
   #mystery {
     cursor: pointer;
