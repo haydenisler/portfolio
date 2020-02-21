@@ -2,7 +2,7 @@
   <div id="app">
     <div id="main">
       <Hideout id="bg" />
-      <div id="header">
+      <div id="header-desktop">
         <router-link tag="div" to="/" id="logo"><span>HI</span></router-link>
         <div id="nav">
           <router-link tag="div" to="/projects" class="nav-button"><span>projects</span></router-link>
@@ -10,16 +10,18 @@
           <router-link tag="div" to="/contact" class="nav-button"><span>contact</span></router-link>
         </div>
       </div>
-      <div id="badges"></div>
+      <div id="header-mobile"></div>
+      <div id="badges-desktop"></div>
       <div id="content">
         <router-view />
       </div>
-      <div id="footer">
+      <div id="footer-desktop">
         <span>: made with &#10084; by hayden isler :</span>
         <router-link tag="div" to="/mystery" id="mystery">
           <icon-base width="40px" height="40px" viewBox="0 -15 200 200"><icon-mystery /></icon-base>
         </router-link>
       </div>
+      <div id="footer-mobile"></div>
     </div>
   </div>
 </template>
@@ -40,8 +42,6 @@ export default {
 </script>
 
 <style lang="scss">
-$content-gutters: 80px;
-
 html {
   height: 100%
 }
@@ -58,6 +58,7 @@ body {
 
 #app {
   height: 100%;
+  width: 100%;
 }
 
 #bg {
@@ -73,27 +74,7 @@ body {
   color: $text-color-main;
 }
 
-#header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  
-  #logo {
-    font-weight: 800;
-    font-size: 2.0em;
-  }
-
-  #nav {
-    display: flex;
-    justify-content: space-between;
-    font-family: 'Raleway', sans-serif;
-    font-size: 1em;
-  }
-}
-
 #content {
-  /* grid area | content */
   height: 100%;
   width: 100%;
 }
@@ -130,22 +111,23 @@ strong {
  ** MOBILE STYLING
  */
 @media screen and (max-width: 800px) {
+  /* hiding desktop elements */
+  #header-desktop, #badges-desktop, #footer-desktop {
+    display: none;
+  }
+
   #main {
-    display: flex;
-    flex-direction: column-reverse;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 20px auto 20px;
+    grid-template-rows: 90% 10%;
+    grid-template-areas:
+      'gutter-1 content gutter2'
+      'footer footer footer'
+    ;
   }
 
-  #header {
-    background-color: $text-color-accent-1;
-  }
-  
-  #badges {
-    display: none;
-  }
-
-  #footer {
-    display: none;
+  #content {
+    grid-area: content;
   }
 }
 
@@ -153,22 +135,17 @@ strong {
  ** DESKTOP STYLING
  */
 @media screen and (min-width: 801px) {
+  $content-gutters: 80px;
+
+  /* hiding mobile elements */
+  #header-mobile, #footer-mobile {
+    display: none;
+  }
 
   #main {
     display: grid;
-    grid-template-columns:
-      [ badges-begin                  ] 100px
-      [ badges-end     gutter-1-end   ] $content-gutters
-      [ gutter-2-end   content-begin  ] auto
-      [ content-end    gutter-2-begin ] $content-gutters
-      [ gutter-2-end                  ]
-    ;
-    grid-template-rows:
-      [ header-begin                  ] 100px
-      [ header-end      content-begin ] auto
-      [ content-end     footer-begin  ] 60px
-      [ footer-end                    ]
-    ;
+    grid-template-columns: 100px $content-gutters auto $content-gutters;
+    grid-template-rows: 100px auto 60px;
     grid-template-areas:
       'badges gutters-1 header gutters-2'
       'badges gutters-1 content gutters-2'
@@ -176,12 +153,18 @@ strong {
     ;
   }
 
-  #header {
+  #header-desktop {
     grid-area: header;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 
     #logo {
       cursor: pointer;
       transition: scale 0.1s ease-in;
+      font-weight: 800;
+      font-size: 2.0em;
     }
 
     #logo:hover {
@@ -189,8 +172,12 @@ strong {
     }
 
     #nav {
+      display: flex;
+      justify-content: space-between;
+      font-family: 'Raleway', sans-serif;
       width: 425px;
       color: $text-color-accent-1;
+      font-size: 1em;
 
       .nav-button {
         color: $text-color-accent-1;
@@ -216,7 +203,7 @@ strong {
     }
   }
 
-  #badges {
+  #badges-desktop {
     grid-area: badges;
     background-color: $elevation-color-2;
   }
@@ -225,7 +212,7 @@ strong {
     grid-area: content;
   }
 
-  #footer {
+  #footer-desktop {
     grid-area: footer;
     background-color: $elevation-color-1;
     display: flex;
