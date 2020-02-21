@@ -10,7 +10,9 @@
           <router-link tag="div" to="/contact" class="nav-button"><span>contact</span></router-link>
         </div>
       </div>
-      <div id="header-mobile"></div>
+      <div id="header-mobile">
+        <router-link tag="div" to="/"><span>HI</span></router-link>
+      </div>
       <div id="badges-desktop"></div>
       <div id="content">
         <router-view />
@@ -129,7 +131,7 @@ strong {
 /*
  ** MOBILE STYLING
  */
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 840px) {
   $content-gutters: 30px;
 
   /* hiding desktop elements */
@@ -140,7 +142,7 @@ strong {
   #main {
     display: grid;
     grid-template-columns: $content-gutters auto $content-gutters;
-    grid-template-rows: 8% auto 65px;
+    grid-template-rows: 50px auto 60px;
     grid-template-areas:
       'header header header'
       'gutter-1 content gutter2'
@@ -150,19 +152,20 @@ strong {
 
   #header-mobile {
     grid-area: header;
-    width: 100%;
-    height: 100%;
-    background-color: white;
+    padding: 0 $content-gutters;
+    font-size: 1.7em;
+    font-weight: 800;
+    display: flex;
+    flex-direction: row;
+    align-items:flex-end;
   }
 
   #footer-mobile {
     grid-area: footer;
-    height: 100%;
-    padding: 0px $content-gutters;
     background-color: $text-color-accent-1;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     font-family: 'Raleway', sans-serif;
     font-size: 0.8em;
@@ -172,22 +175,29 @@ strong {
       display: flex;
       flex-direction: column;
       align-items: center;
-
+      color: $background-color;
+      transition: color 0.1s ease-in;
+      
       span {
         margin-top: 2px;
       }
+    }
+
+    .router-link-active {
+      color: white;
     }
   }
 
   #content {
     grid-area: content;
+    overflow: auto;
   }
 }
 
 /*
  ** DESKTOP STYLING
  */
-@media screen and (min-width: 801px) {
+@media screen and (min-width: 841px) {
   $content-gutters: 80px;
 
   /* hiding mobile elements */
