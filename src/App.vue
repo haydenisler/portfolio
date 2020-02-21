@@ -21,7 +21,20 @@
           <icon-base width="40px" height="40px" viewBox="0 -15 200 200"><icon-mystery /></icon-base>
         </router-link>
       </div>
-      <div id="footer-mobile"></div>
+      <div id="footer-mobile">
+        <router-link tag="div" to="/projects" class="nav-button">
+          <icon-base width="30px" height="30px" viewBox="0 0 24 24"><icon-projects /></icon-base>
+          <span>projects</span>
+        </router-link>
+        <router-link tag="div" to="/resume" class="nav-button">
+          <icon-base width="30px" height="30px" viewBox="0 0 24 24"><icon-resume /></icon-base>
+          <span>resume</span>
+        </router-link>
+        <router-link tag="div" to="/contact" class="nav-button">
+          <icon-base width="30px" height="30px" viewBox="0 0 24 24"><icon-email /></icon-base>
+          <span>contact</span>
+        </router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -30,13 +43,19 @@
 import Hideout from '@/components/Hideout.vue';
 import IconBase from '@/components/IconBase.vue';
 import IconMystery from '@/components/icons/IconMystery.vue';
+import IconEmail from '@/components/icons/IconEmail.vue';
+import IconProjects from '@/components/icons/IconProjects.vue';
+import IconResume from '@/components/icons/IconResume.vue';
 
 export default {
   data: () => {},
   components: {
     Hideout,
     IconBase,
-    IconMystery
+    IconMystery,
+    IconEmail,
+    IconProjects,
+    IconResume
   }
 }
 </script>
@@ -111,6 +130,8 @@ strong {
  ** MOBILE STYLING
  */
 @media screen and (max-width: 800px) {
+  $content-gutters: 30px;
+
   /* hiding desktop elements */
   #header-desktop, #badges-desktop, #footer-desktop {
     display: none;
@@ -118,12 +139,44 @@ strong {
 
   #main {
     display: grid;
-    grid-template-columns: 20px auto 20px;
-    grid-template-rows: 90% 10%;
+    grid-template-columns: $content-gutters auto $content-gutters;
+    grid-template-rows: 8% auto 65px;
     grid-template-areas:
+      'header header header'
       'gutter-1 content gutter2'
       'footer footer footer'
     ;
+  }
+
+  #header-mobile {
+    grid-area: header;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+  }
+
+  #footer-mobile {
+    grid-area: footer;
+    height: 100%;
+    padding: 0px $content-gutters;
+    background-color: $text-color-accent-1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.8em;
+    font-weight: 600;
+
+    .nav-button {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      span {
+        margin-top: 2px;
+      }
+    }
   }
 
   #content {
