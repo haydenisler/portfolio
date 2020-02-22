@@ -13,7 +13,20 @@
       <div id="header-mobile">
         <router-link tag="div" to="/"><span>HI</span></router-link>
       </div>
-      <div id="badges-desktop"></div>
+      <div id="badges-desktop">
+        <a href="https://www.github.com/haydenisler" target="_blank" class="badge">
+          <icon-base width="35px" height="35px" viewBox="0 0 24 24"><icon-github /></icon-base>
+        </a>
+        <a href="https://www.codepen.io/haydenisler" target="_blank" class="badge">
+          <icon-base width="35px" height="35px" viewBox="0 0 24 24"><icon-codepen /></icon-base>
+        </a>
+        <a href="https://www.linkedin.com/in/hayden-isler-b47a909a/" target="_blank" class="badge">
+          <icon-base width="35px" height="35px" viewBox="0 0 510 510"><icon-linkedin /></icon-base>
+        </a>
+        <a href="https://www.twitter.com/haydenisler" target="_blank" class="badge">
+          <icon-base width="35px" height="35px" viewBox="0 0 24 24"><icon-twitter /></icon-base>
+        </a>
+      </div>
       <div id="content">
         <router-view />
       </div>
@@ -48,6 +61,10 @@ import IconMystery from '@/components/icons/IconMystery.vue';
 import IconEmail from '@/components/icons/IconEmail.vue';
 import IconProjects from '@/components/icons/IconProjects.vue';
 import IconResume from '@/components/icons/IconResume.vue';
+import IconGithub from '@/components/icons/IconGithub.vue';
+import IconCodepen from '@/components/icons/IconCodepen.vue';
+import IconTwitter from '@/components/icons/IconTwitter.vue';
+import IconLinkedin from '@/components/icons/IconLinkedin.vue';
 
 export default {
   data: () => {},
@@ -57,7 +74,11 @@ export default {
     IconMystery,
     IconEmail,
     IconProjects,
-    IconResume
+    IconResume,
+    IconGithub,
+    IconCodepen,
+    IconTwitter,
+    IconLinkedin
   }
 }
 </script>
@@ -177,6 +198,7 @@ strong {
       align-items: center;
       color: $background-color;
       transition: color 0.1s ease-in;
+      cursor: pointer;
       
       span {
         margin-top: 2px;
@@ -207,7 +229,7 @@ strong {
 
   #main {
     display: grid;
-    grid-template-columns: 100px $content-gutters auto $content-gutters;
+    grid-template-columns: 80px $content-gutters auto $content-gutters;
     grid-template-rows: 100px auto 60px;
     grid-template-areas:
       'badges gutters-1 header gutters-2'
@@ -269,6 +291,24 @@ strong {
   #badges-desktop {
     grid-area: badges;
     background-color: $elevation-color-2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    a {
+      color: white;
+      text-decoration: none;
+      margin: 30px 0px;
+    }
+
+    .badge {
+      transition: scale 0.1s ease-in;
+    }
+
+    .badge:hover {
+      scale: 1.1;
+    }
   }
 
   #content {
